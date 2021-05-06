@@ -9,7 +9,6 @@ class BtnDeck extends Component {
   static displayName = "Deck";
 
   _review = () => {
-    //reviewDeck
     this.props.dispatch(reviewDeck(this.props.deckid));
     this.props.navigation.navigate('Review', { deckID: this.props.deckid });
   };

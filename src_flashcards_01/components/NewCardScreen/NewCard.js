@@ -5,6 +5,7 @@ import Button from "../Button";
 import LabeledInput from "../LabeledInput";
 import NormalText from "../NormalText";
 import{ colors } from "../../styles/colors";
+import { reviewDeck } from "./../../actions/creators";
 
 class NewCard extends Component {
   static navigationOptions = { title: "Create Card" };
@@ -34,6 +35,7 @@ class NewCard extends Component {
   };
 
   _reviewDeck = () => {
+    this.props.dispatch(reviewDeck(this._deckID()));
     this.props.navigation.navigate("Review");
   };
 
