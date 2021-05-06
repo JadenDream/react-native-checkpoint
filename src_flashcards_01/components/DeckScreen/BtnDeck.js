@@ -8,11 +8,11 @@ class BtnDeck extends Component {
   static displayName = "Deck";
 
   _review = () => {
-    this.props.navigation.push('Review');
+    this.props.navigation.navigate('Review');
   };
 
   _addCards = () => {
-    this.props.navigation.push('CardCreation');
+    this.props.navigation.navigate('CardCreation');
   };
 
   render() {
