@@ -3,16 +3,19 @@ import { StyleSheet, View } from "react-native";
 import Button from "../Button";
 import NormalText from "../NormalText";
 import {colors} from "../../styles/colors";
+import { reviewDeck } from "./../../actions/creators";
 
 class BtnDeck extends Component {
   static displayName = "Deck";
 
   _review = () => {
-    this.props.navigation.navigate('Review');
+    //reviewDeck
+    this.props.dispatch(reviewDeck(this.props.deckid));
+    this.props.navigation.navigate('Review', { deckID: this.props.deckid });
   };
 
   _addCards = () => {
-    this.props.navigation.navigate('CardCreation');
+    this.props.navigation.navigate('CardCreation', { deckID: this.props.deckid });
   };
 
   render() {

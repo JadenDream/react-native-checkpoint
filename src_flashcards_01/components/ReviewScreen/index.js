@@ -6,6 +6,8 @@ import ViewCard from "./ViewCard";
 import { mkReviewSummary } from "./ReviewSummary";
 import {colors} from "../../styles/colors";
 import { reviewCard, nextReview, stopReview } from "./../../actions/creators";
+import CardList from "./CardList"
+import HeadingText from "./../HeadingText";
 
 class ReviewScreen extends Component {
   static displayName = "ReviewScreen";
@@ -29,11 +31,17 @@ class ReviewScreen extends Component {
   };
 
   _quitReviewing = () => {
-    this.props.stopReview();
+    this.props.stopReview(this.props.deckid);
     this.props.navigation.goBack();
   };
-
+/*
   _contents() {
+    // 測試用 後續要刪除
+    if (!this.props.reviews) {
+      return null;
+    }
+    console.log("reviews length:" + this.props.reviews.length);
+
     if (!this.props.reviews || this.props.reviews.length === 0) {
       return null;
     }
@@ -51,12 +59,15 @@ class ReviewScreen extends Component {
       let percent = this.state.numCorrect / this.state.numReviewed;
       return mkReviewSummary(percent, this._quitReviewing);
     }
-  }
-
+  }*/
+ // {this._contents()}
   render() {
     return (
       <View style={styles.container}>
-        {this._contents()}
+        <HeadingText>
+            Index!
+            </HeadingText>
+        <CardList />
       </View>
     );
   }

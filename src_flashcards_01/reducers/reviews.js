@@ -16,7 +16,11 @@ function findDeck(decks, id) {
 }
 
 function generateReviews(deck) {
-  return mkReviewState(deck.id, mkReviews(deck.cards), 0);
+  console.log("generateReviews-deck:", deck);
+  let mReviews = mkReviewState(deck.id, mkReviews(deck.cards), 0);
+  console.log("generateReviews-mReviews:", mReviews);
+  return mReviews;
+  //return mkReviewState(deck.id, mkReviews(deck.cards), 0);
 }
 
 function nextReview(state) {
@@ -28,6 +32,7 @@ function nextReview(state) {
 }
 
 const reducer = (state = mkReviewstate(), action, decks) => {
+  console.log("reviews reducer - action.type", action.type)
   switch (action.type) {
     case REVIEW_DECK:
       return generateReviews(findDeck(decks, action.data.deckID));

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { View } from "react-native";
 import BtnDeck from "./BtnDeck"
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const DeckList = () => {
     let decks = useSelector(state => state.decks);
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     if (!decks) {
         return null;
@@ -19,17 +20,21 @@ const DeckList = () => {
         },
         {}
     )
-    
+
+    const btnDeckList = decks.map((deck) =>
+        <BtnDeck
+            key={deck.id}
+            deck={deck}
+            count={counts[deck.id]}
+            deckid={deck.id}
+            navigation={navigation}
+            dispatch={dispatch}
+        />
+    )
+
     return (
         <View>
-            {decks.map(deck =>
-                <BtnDeck
-                    deck={deck}
-                    count={counts[deck.id]}
-                    key={deck.id}
-                    navigation={navigation}
-                />
-            )}
+            {btnDeckList}
         </View>
     );
 };
