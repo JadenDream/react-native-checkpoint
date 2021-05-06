@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Button from "./../Button";
 import NormalText from "./../NormalText";
 import HeadingText from "./../HeadingText";
 import {colors} from "../../styles/colors";
+import { useDispatch } from 'react-redux';
 
 class ContinueButton extends Component {
   render() {

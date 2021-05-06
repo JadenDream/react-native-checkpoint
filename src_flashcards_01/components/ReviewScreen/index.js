@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-
-import { connect } from "react-redux";
-import ViewCard from "./ViewCard";
-import { mkReviewSummary } from "./ReviewSummary";
 import {colors} from "../../styles/colors";
-import { reviewCard, nextReview, stopReview } from "./../../actions/creators";
 import CardList from "./CardList"
-import HeadingText from "./../HeadingText";
 
 class ReviewScreen extends Component {
   static displayName = "ReviewScreen";
@@ -34,39 +28,10 @@ class ReviewScreen extends Component {
     this.props.stopReview(this.props.deckid);
     this.props.navigation.goBack();
   };
-/*
-  _contents() {
-    // 測試用 後續要刪除
-    if (!this.props.reviews) {
-      return null;
-    }
-    console.log("reviews length:" + this.props.reviews.length);
 
-    if (!this.props.reviews || this.props.reviews.length === 0) {
-      return null;
-    }
-
-    if (this.props.currentReview < this.props.reviews.length) {
-      return (
-        <ViewCard
-          onReview={this.onReview}
-          continue={this._nextReview}
-          quit={this._quitReviewing}
-          {...this.props.reviews[this.props.currentReview]}
-        />
-      );
-    } else {
-      let percent = this.state.numCorrect / this.state.numReviewed;
-      return mkReviewSummary(percent, this._quitReviewing);
-    }
-  }*/
- // {this._contents()}
   render() {
     return (
       <View style={styles.container}>
-        <HeadingText>
-            Index!
-            </HeadingText>
         <CardList />
       </View>
     );
@@ -77,22 +42,4 @@ const styles = StyleSheet.create({
   container: { backgroundColor: colors.blue, flex: 1, paddingTop: 24 }
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    nextReview: () => {
-      dispatch(nextReview());
-    },
-    stopReview: () => {
-      dispatch(stopReview());
-    }
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    reviews: state.currentReview.questions,
-    currentReview: state.currentReview.currentQuestionIndex
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewScreen);
+export default ReviewScreen;
